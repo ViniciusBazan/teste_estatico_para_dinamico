@@ -1,5 +1,7 @@
 <?php
 define("INC_PATH", "inc".DIRECTORY_SEPARATOR);
+require_once "DataRequest.php";
+$dashboard = new DataRequest;
 ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -104,7 +106,7 @@ define("INC_PATH", "inc".DIRECTORY_SEPARATOR);
 						</div>
 						<div class="details">
 							<div class="number">
-								 1349
+								 <?php echo $dashboard->dadosClientes('c'); ?>
 							</div>
 							<div class="desc">
 								 Clientes
@@ -122,7 +124,7 @@ define("INC_PATH", "inc".DIRECTORY_SEPARATOR);
 						</div>
 						<div class="details">
 							<div class="number">
-								549
+							<?php echo $dashboard->dadosUsuarios('c'); ?>
 							</div>
 							<div class="desc">
 								Usuários
@@ -140,7 +142,7 @@ define("INC_PATH", "inc".DIRECTORY_SEPARATOR);
 						</div>
 						<div class="details">
 							<div class="number">
-								89
+							<?php echo $dashboard->dadosFornecedores('c'); ?>
 							</div>
 							<div class="desc">
 								Fornecedores

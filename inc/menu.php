@@ -1,3 +1,72 @@
+<?php 
+
+//Início do Array do menu
+
+$menu = array(
+    0 => array(
+        "item"    => "Dashboard",
+        "href"     => "index.php",
+        "active"  => true,
+        "icon"    => "fa fa-home",
+        "submenu" => ""
+    ),
+    1 => array(
+        "item"    => "Cadastro",
+        "href"    => "javascript:;",
+        "active"  => false,
+        "icon"    => "fa fa-file-text",
+        "submenu" => array(
+            0 => array(
+                "subitem" => "Cliente",
+                "href"    => "#"
+            ),
+            1 => array(
+                "subitem" => "Fornecedor",
+                "href"    => "#"
+            ),
+            2 => array(
+                "subitem" => "Perfil de acesso",
+                "href"    => "#"
+            ),
+            3 => array(
+                "subitem" => "Produtos",
+                "href"    => "#"
+            ),
+            4 => array(
+                "subitem" => "Usuário",
+                "href"    => "#"
+            )
+        )
+    ),
+    2 => array(
+        "item"    => "Relatório",
+        "href"    => "javascript:;",
+        "active"  => false,
+        "icon"    => "fa fa-bar-chart-o",
+        "submenu" => array(
+            0 => array(
+                "subitem" => "Cliente",
+                "href"    => "#"
+            ),
+            1 => array(
+                "subitem" => "Faturamento",
+                "href"    => "#"
+            ),
+            2 => array(
+                "subitem" => "Produtos",
+                "href"    => "#"
+            )
+        )
+    )
+);
+
+
+$json = json_encode($menu);
+echo "<script>console.log('${json}')</script>";
+
+
+
+?>
 <!-- BEGIN SIDEBAR -->
 <div class="page-sidebar-wrapper">
 		<div class="page-sidebar navbar-collapse collapse">
@@ -22,57 +91,47 @@
 					</form>
 					<!-- END RESPONSIVE QUICK SEARCH FORM -->
 				</li>
-				<li class="start active ">
-					<a href="index.html">
-					<i class="fa fa-home"></i>
-					<span class="title">
-						Dashboard
-					</span>
-					<span class="selected">
-					</span>
-					</a>
-				</li>
-				<!--Cliente-->
-				<li class="">
-					<a href="javascript:;">
-					<i class="fa fa-file-text"></i>
-					<span class="title">
-						Cadastro
-					</span>
-					<span class="arrow ">
-					</span>
-					</a>
-					<ul class="sub-menu">
-						<li>
-							<a href="#">Cliente</a>
-						</li>
-						<li>
-							<a href="#">Fornecedor</a>
-						</li>
-						<li>
-							<a href="#">Usuário</a>
-						</li>
-					</ul>
-				</li>
-				<!--Relatorio-->
-				<li class="">
-					<a href="javascript:;">
-					<i class="fa fa-bar-chart-o"></i>
-					<span class="title">
-						Relatório
-					</span>
-					<span class="arrow ">
-					</span>
-					</a>
-					<ul class="sub-menu">
-						<li>
-							<a href="#">Cliente</a>
-						</li>
-						<li>
-							<a href="#">Faturamento</a>
-						</li>
-					</ul>
-				</li>
+                <!-- INICIO MENU DINAMICO -->
+                <?php
+                foreach($menu as &$li){
+                    ?> <li class=" <?php if($li["active"] == true){echo "start active";} ?>">
+                        <a href="<?php echo $li["href"]; ?>">
+                        <i class="<?php echo $li["icon"]; ?>"></i>
+                        <span class="title">
+                            <?php echo $li["item"]; ?>
+                        </span>
+                        <?php
+                        if($li["active"] == true){
+                            echo "<span class='selected'>";
+                            echo "</span>";
+                        }
+
+                        if(is_array($li["submenu"])){
+                            echo "<span class='arrow'>";
+                            echo "</span>";
+                            echo "</a>";
+                            echo "<ul class='sub-menu'>";
+
+                            foreach($li["submenu"] as &$submenu){
+                                ?>
+                                <li>
+                                    <a href="<?php echo $submenu["href"]; ?>"><?php echo $submenu["subitem"]; ?></a>
+                                </li>
+                                <?php
+                            }
+                            echo "</ul>";
+                            echo "</li>";
+
+                        }else{
+                            echo "</a>";
+                            echo "</li>";
+                        }
+                        ?>
+                <?php
+                }
+                ?>
+                
+                <!-- FIM MENU DINÂMICO -->
 			</ul>
 			<!-- END SIDEBAR MENU -->
 		</div>

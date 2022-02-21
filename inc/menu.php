@@ -35,6 +35,10 @@ $menu = array(
             4 => array(
                 "subitem" => "Usuário",
                 "href"    => "#"
+            ),
+            5 => array(
+                "subitem" => "Teste do Menu",
+                "href"    => "https://google.com.br"
             )
         )
     ),

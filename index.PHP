@@ -31,6 +31,7 @@ $dashboard = new DataRequest;
 <link rel="shortcut icon" href="favicon.ico"/>
 <!-- BEGIN JS SCRIPTS -->
 <script type="text/javascript" src="js/dashboard.js"></script>
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
 <!-- END JS SCRIPTS -->
 </head>
 <!-- END HEAD -->

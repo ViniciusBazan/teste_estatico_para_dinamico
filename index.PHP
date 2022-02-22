@@ -29,6 +29,9 @@ $dashboard = new DataRequest;
 <link href="assets/css/custom.css" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
+<!-- BEGIN JS SCRIPTS -->
+<script type="text/javascript" src="js/dashboard.js"></script>
+<!-- END JS SCRIPTS -->
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -112,7 +115,7 @@ $dashboard = new DataRequest;
 								 Clientes
 							</div>
 						</div>
-						<a class="more" href="#">
+						<a class="more" href="#" onclick="dashboard('c')">
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -130,7 +133,7 @@ $dashboard = new DataRequest;
 								Usuários
 							</div>
 						</div>
-						<a class="more" href="#">
+						<a class="more" href="#" onclick="dashboard('u')">
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -148,7 +151,7 @@ $dashboard = new DataRequest;
 								Fornecedores
 							</div>
 						</div>
-						<a class="more" href="#">
+						<a class="more" href="#" onclick="dashboard('f')">
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -161,7 +164,7 @@ $dashboard = new DataRequest;
 			<div class="row">
 				<div class="col-md-12">
 					<!-- BEGIN SAMPLE TABLE PORTLET-->
-					<div class="portlet box grey">
+					<div id="tableColor" class="portlet box grey">
 						<div class="portlet-title">
 							<div class="caption">
 								<i class="fa fa-folder-open"></i>Tabela Simples

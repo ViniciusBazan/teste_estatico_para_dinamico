@@ -32,6 +32,82 @@ $dashboard = new DataRequest;
 <!-- BEGIN JS SCRIPTS -->
 <script type="text/javascript" src="js/dashboard.js"></script>
 <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<!--<script type="text/javascript" src="js/dataDashboard.js"></script>-->
+<script>
+$(document).ready(function() {
+	var url = window.location.href.replace("#","");
+	//console.log(url+'DataRequestCli.php')
+
+	$("#viewClient").click(function(e) {
+		e.preventDefault();
+		
+		$.ajax({
+			url: url+'DataRequestCli.php',
+			method: 'POST',
+			dataType: 'json'
+		}).done(function(result){
+			
+			$('#tableheader').empty();
+			$('#tablebody').empty();
+			$('#tablename').empty();
+			$('#tablename').prepend('Clientes')
+			$('#tableheader').prepend('<tr><th>#</th><th>Nome</th><th>CPF</th><th>Endereço</th><th>Telefone</th><th>E-mail</th></tr>');
+
+			for(var i = (result.length - 1); i >= 0; i--){
+				$('#tablebody').prepend('<tr><td>'+(i+1)+'</td><td>'+result[i].nome+'</td><td>'+result[i].cpf+'</td><td>'+result[i].endereco+'</td><td>'+result[i].telefone+'</td><td>'+result[i].email+'</td></tr>');
+			}
+		});
+	});
+
+
+	$("#viewUser").click(function(e) {
+		e.preventDefault();
+		
+		$.ajax({
+			url: url+'DataRequestUser.php',
+			method: 'POST',
+			dataType: 'json'
+		}).done(function(result){
+			
+			$('#tableheader').empty();
+			$('#tablebody').empty();
+			$('#tablename').empty();
+			$('#tablename').prepend('Usuários')
+			$('#tableheader').prepend('<tr><th>#</th><th>Nome</th><th>CPF</th><th>Endereço</th><th>Telefone</th><th>Usuário</th></tr>');
+
+			for(var i = (result.length - 1); i >= 0; i--){
+				$('#tablebody').prepend('<tr><td>'+(i+1)+'</td><td>'+result[i].nome+'</td><td>'+result[i].cpf+'</td><td>'+result[i].endereco+'</td><td>'+result[i].telefone+'</td><td>'+result[i].usuario+'</td></tr>');
+			}
+		});
+	});
+
+
+
+	$("#viewProvider").click(function(e) {
+		e.preventDefault();
+		
+		$.ajax({
+			url: url+'DataRequestFor.php',
+			method: 'POST',
+			dataType: 'json'
+		}).done(function(result){
+			
+			$('#tableheader').empty();
+			$('#tablebody').empty();
+			$('#tablename').empty();
+			$('#tablename').prepend('Fornecedores')
+			$('#tableheader').prepend('<tr><th>#</th><th>Nome</th><th>CPF</th><th>Cidade</th><th>E-mail</th></tr>');
+
+			for(var i = (result.length - 1); i >= 0; i--){
+				$('#tablebody').prepend('<tr><td>'+(i+1)+'</td><td>'+result[i].nome+'</td><td>'+result[i].cpf+'</td><td>'+result[i].cidade+'</td><td>'+result[i].email+'</td></tr>');
+			}
+		});
+	});
+
+
+
+});
+</script>
 <!-- END JS SCRIPTS -->
 </head>
 <!-- END HEAD -->
@@ -116,7 +192,7 @@ $dashboard = new DataRequest;
 								 Clientes
 							</div>
 						</div>
-						<a class="more" href="#" onclick="dashboard('c')">
+						<a id="viewClient" class="more" href="#" onclick="dashboard('c')">
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -134,7 +210,7 @@ $dashboard = new DataRequest;
 								Usuários
 							</div>
 						</div>
-						<a class="more" href="#" onclick="dashboard('u')">
+						<a id="viewUser" class="more" href="#" onclick="dashboard('u')">
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -152,7 +228,7 @@ $dashboard = new DataRequest;
 								Fornecedores
 							</div>
 						</div>
-						<a class="more" href="#" onclick="dashboard('f')">
+						<a id="viewProvider" class="more" href="#" onclick="dashboard('f')">
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -168,7 +244,7 @@ $dashboard = new DataRequest;
 					<div id="tableColor" class="portlet box grey">
 						<div class="portlet-title">
 							<div class="caption">
-								<i class="fa fa-folder-open"></i>Tabela Simples
+								<i class="fa fa-folder-open"></i><span id="tablename">-</span>
 							</div>
 							<div class="tools">
 								<a href="javascript:;" class="collapse"></a>
@@ -180,102 +256,13 @@ $dashboard = new DataRequest;
 						<div class="portlet-body">
 							<div class="table-responsive">
 								<table class="table table-hover">
-								<thead>
-								<tr>
-									<th>
-										#
-									</th>
-									<th>
-										Nome
-									</th>
-									<th>
-										Sobrenome
-									</th>
-									<th>
-										Usuario
-									</th>
-									<th>
-										Status
-									</th>
-								</tr>
+								<thead id="tableheader">
+								
 								</thead>
-								<tbody>
-								<tr>
-									<td>
-										1
-									</td>
-									<td>
-										Mark
-									</td>
-									<td>
-										Otto
-									</td>
-									<td>
-										makr124
-									</td>
-									<td>
-										<span class="label label-sm label-success">
-											Aprovado
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										2
-									</td>
-									<td>
-										Jacob
-									</td>
-									<td>
-										Nilson
-									</td>
-									<td>
-										jac123
-									</td>
-									<td>
-										<span class="label label-sm label-info">
-											Pendente
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										3
-									</td>
-									<td>
-										Larry
-									</td>
-									<td>
-										Cooper
-									</td>
-									<td>
-										lar
-									</td>
-									<td>
-										<span class="label label-sm label-warning">
-											Suspenso
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										4
-									</td>
-									<td>
-										Sandy
-									</td>
-									<td>
-										Lim
-									</td>
-									<td>
-										sanlim
-									</td>
-									<td>
-										<span class="label label-sm label-danger">
-											Bloqueado
-										</span>
-									</td>
-								</tr>
+								<tbody id="tablebody">
+								<!-- BEGIN TABLE BODY -->
+								
+								<!-- END TABLE BODY -->
 								</tbody>
 								</table>
 							</div>

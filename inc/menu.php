@@ -61,8 +61,8 @@ $menu = array(
 );
 
 
-$json = json_encode($menu);
-echo "<script>console.log('${json}')</script>";
+//$json = json_encode($menu);
+//echo "<script>console.log('${json}')</script>";
 
 
 
